@@ -1,65 +1,51 @@
-
 class Graph:
     def __init__(self):
         self.edges = {}
-    def add_edge(self,from_node,to_node,simbol):
+
+    def add_edge(self, from_node, to_node, simbol):
         if from_node in self.edges:
-            
-            self.edges[from_node].append((to_node,simbol))
-            
+
+            self.edges[from_node].append((to_node, simbol))
+
         else:
-            
-            self.edges[from_node] = [(to_node,simbol)]
-            
 
-    def print(self):
-        for node in self.edges:
-            print(self.edges[node])
-            for to_node in self.edges[node]:
-                print(f"de la {node} la {to_node}")
+            self.edges[from_node] = [(to_node, simbol)]
 
-    def dfs(self,curr_node,viz= {}):
-        viz[curr_node] = True
-        print(viz)
-        for next_node,simbol in self.edges.get(curr_node,[]):
-              if next_node in viz:
-                 continue
-              print(f"de la {curr_node} la {next_node} prin {simbol}")
-              print(self.edges[curr_node])
-              self.dfs(next_node,viz)
+    def dfs2(self, curr_node, cuv, L, lista_nr_noduri, L2, str_finala):
 
-    def dfs2(self,curr_node,cuv,L,ok = 1,viz= {}):
-        
-        viz[curr_node] = True
-        print(cuv)
-        while len(cuv) - 1 > 0 :
-            i = 0 
-            for next_node,simbol in self.edges.get(curr_node,[]):
-                i+=1 
-                print(self.edges[curr_node])
-
+        while len(cuv) > 0:
+            i = 0
+            for next_node, simbol in self.edges.get(curr_node, []):
+                i += 1
                 if simbol == cuv[0]:
-                    print(f"Am gasit litera, trecem mai departe,mergem prin {next_node}")
-                    cuv = cuv[1:]
                     L.append(next_node)
-                    if len(cuv) == 1:
-                        print("Am gasit cuvantul, am terminat.")
-                        print(*L)
+                    L2.append(lista_nr_noduri[next_node])
+                    cuv = cuv[1:]
+                    if len(cuv) == 0 and next_node == str_finala:
+                        print("DA")
+                        print("".join(L2))
+                        print("Traseu: ", *L)
                         break
-                    self.dfs2(next_node,cuv,L)
-                    break    
+                    if len(cuv) == 0 and next_node != str_finala:
+                        print("NU")
+                        break
+                    self.dfs2(next_node, cuv, L, lista_nr_noduri, L2, str_finala)
+                    break
                 if i == len(self.edges[curr_node]) and simbol != cuv[0]:
-                   print("NU") 
-                   break
-            break 
-                    
+                    print("NU")
+                    break
+            break
+
+
 g = Graph()
 f = open("input.txt")
 t = f.readline()
 t = t.split()
-nr_stari,nr_drumuri = int(t[0]),int(t[1])
+nr_stari, nr_drumuri = int(t[0]), int(t[1])
+b = f.readline()
 
-print (f"Numarul de stari : {nr_stari}\nNumarul de drumuri : {nr_drumuri}\n")
+lista_nr_noduri = b.split()
+
 for i in range(nr_drumuri):
     linie = f.readline()
     aux = linie.split()
@@ -70,17 +56,12 @@ pre_stare_finala = f.readline()
 aux = pre_stare_finala.split()
 stare_finala = aux[1]
 nr_teste = f.readline()
-
+str_finala = int(stare_finala)
 
 for linie in f:
-    cuv = linie 
-    print(f"Numarul de teste {nr_teste} ")
-    print(f"Cuvantul initial: {cuv}")
+    cuv = linie.strip()
     L = []
+    L2 = []
     L.append(int(stare_initiala))
-    g.dfs2(0,cuv,L)
-
-
-
-
-
+    L2.append(lista_nr_noduri[int(stare_initiala)])
+    g.dfs2(0, cuv, L, lista_nr_noduri, L2, str_finala)
