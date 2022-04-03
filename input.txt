@@ -12,6 +12,7 @@
 4 5 c
 0 
 1 5
-2
+3
 abbc
 abbc
+bbbb

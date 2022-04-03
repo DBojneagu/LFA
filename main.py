@@ -41,18 +41,11 @@ class Graph:
                         break
                     self.dfs2(next_node,cuv)
                     break    
-                if i == 3 and simbol != cuv[0]:
+                if i == len(self.edges[curr_node]) and simbol != cuv[0]:
                    print("Cuvantul nu poate fi acceptat") 
                    break
             break 
-        
-                 
-
-
-
-        
-
-                        
+                    
 g = Graph()
 f = open("input.txt")
 t = f.readline()
