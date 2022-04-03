@@ -10,3 +10,10 @@
 3 5 c
 4 4 a
 4 5 c
+0 
+1 5
+4
+abbbac
+baaaabac
+abccc
+ababaaa

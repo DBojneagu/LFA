@@ -25,17 +25,30 @@ g = Graph()
 f = open("input.txt")
 t = f.readline()
 t = t.split()
-nr_stari,nr_drumuri = t[0],t[1]
+nr_stari,nr_drumuri = int(t[0]),int(t[1])
 print (f"Numarul de stari : {nr_stari}\nNumarul de drumuri : {nr_drumuri}\n")
-
-for linie in f:
-
+i = 0
+for i in range(nr_drumuri+1):
+    linie = f.readline()
     aux = linie.split()
     g.add_edge(int(aux[0]), int(aux[1]), aux[2])
+    
 
 g.print()
 print()
 g.dfs(1)
+
+stare_initiala = f.readline()
+pre_stare_finala = f.readline()
+aux = pre_stare_finala.split()
+stare_finala = aux[1]
+nr_teste = f.readline()
+
+
+
+
+#for teste in range(nr_teste+1):
+     #cuv = f.readline()
 
 
 
