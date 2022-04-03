@@ -4,12 +4,17 @@ class Graph:
         self.edges = {}
     def add_edge(self,from_node,to_node,simbol):
         if from_node in self.edges:
+            
             self.edges[from_node].append((to_node,simbol))
+            
         else:
-            self.edges[from_node] = [(from_node,simbol)]
+            
+            self.edges[from_node] = [(to_node,simbol)]
+            
 
     def print(self):
         for node in self.edges:
+            print(self.edges[node])
             for to_node in self.edges[node]:
                 print(f"de la {node} la {to_node}")
 
@@ -51,16 +56,12 @@ f = open("input.txt")
 t = f.readline()
 t = t.split()
 nr_stari,nr_drumuri = int(t[0]),int(t[1])
+
 print (f"Numarul de stari : {nr_stari}\nNumarul de drumuri : {nr_drumuri}\n")
-i = 0
-for i in range(nr_drumuri+1):
+for i in range(nr_drumuri):
     linie = f.readline()
     aux = linie.split()
     g.add_edge(int(aux[0]), int(aux[1]), aux[2])
-    
-g.print()
-print()
-g.dfs(0)
 
 stare_initiala = f.readline()
 pre_stare_finala = f.readline()

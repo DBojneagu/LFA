@@ -1,6 +1,5 @@
 6 10
 0 1 a
-5 1 a
 0 2 b
 1 1 b
 1 2 c
@@ -13,6 +12,6 @@
 0 
 1 5
 3
-abbc
-abbc
-bbbb
+abbbac
+baaaabac
+abccc
