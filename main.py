@@ -28,9 +28,9 @@ class Graph:
               print(self.edges[curr_node])
               self.dfs(next_node,viz)
 
-    def dfs2(self,curr_node,cuv,ok = 1,viz= {}):
+    def dfs2(self,curr_node,cuv,L,ok = 1,viz= {}):
+        
         viz[curr_node] = True
-        print(viz)
         print(cuv)
         while len(cuv) - 1 > 0 :
             i = 0 
@@ -41,13 +41,15 @@ class Graph:
                 if simbol == cuv[0]:
                     print(f"Am gasit litera, trecem mai departe,mergem prin {next_node}")
                     cuv = cuv[1:]
+                    L.append(next_node)
                     if len(cuv) == 1:
                         print("Am gasit cuvantul, am terminat.")
+                        print(*L)
                         break
-                    self.dfs2(next_node,cuv)
+                    self.dfs2(next_node,cuv,L)
                     break    
                 if i == len(self.edges[curr_node]) and simbol != cuv[0]:
-                   print("Cuvantul nu poate fi acceptat") 
+                   print("NU") 
                    break
             break 
                     
@@ -72,10 +74,11 @@ nr_teste = f.readline()
 
 for linie in f:
     cuv = linie 
-    print(f"Cuvantul este :{cuv}")
     print(f"Numarul de teste {nr_teste} ")
     print(f"Cuvantul initial: {cuv}")
-    g.dfs2(0,cuv)
+    L = []
+    L.append(int(stare_initiala))
+    g.dfs2(0,cuv,L)
 
 
 
