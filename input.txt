@@ -12,8 +12,6 @@
 4 5 c
 0 
 1 5
-4
-abbbac
-baaaabac
-abccc
-ababaaa
+2
+abbc
+abbc
