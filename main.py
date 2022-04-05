@@ -21,12 +21,12 @@ class Graph:
                     L.append(next_node)
                     L2.append(lista_nr_noduri[next_node])
                     cuv = cuv[1:]
-                    if len(cuv) == 0 and next_node == str_finala:
+                    if len(cuv) == 0 and next_node in str_finala:
                         print("DA")
                         print("".join(L2))
                         print("Traseu: ", *L)
                         break
-                    if len(cuv) == 0 and next_node != str_finala:
+                    if len(cuv) == 0 and next_node not in  str_finala:
                         print("NU")
                         break
                     self.dfs2(next_node, cuv, L, lista_nr_noduri, L2, str_finala)
@@ -54,9 +54,13 @@ for i in range(nr_drumuri):
 stare_initiala = f.readline()
 pre_stare_finala = f.readline()
 aux = pre_stare_finala.split()
-stare_finala = aux[1]
+
+stari_finale = []
+for cif in aux:
+    stari_finale.append(int(cif))
+stari_finale = stari_finale[1:]
+
 nr_teste = f.readline()
-str_finala = int(stare_finala)
 
 for linie in f:
     cuv = linie.strip()
@@ -64,4 +68,4 @@ for linie in f:
     L2 = []
     L.append(int(stare_initiala))
     L2.append(lista_nr_noduri[int(stare_initiala)])
-    g.dfs2(0, cuv, L, lista_nr_noduri, L2, str_finala)
+    g.dfs2(0, cuv, L, lista_nr_noduri, L2, stari_finale)
